@@ -7,10 +7,14 @@ import Home from './../screens/Home';
 import Stories from './../screens/Stories';
 import Comics from './../screens/Comics';
 import Creator from './../screens/Creator';
+import {useDispatch} from 'react-redux';
+import {logout} from '../redux/userSlice';
 
 const Tab = createBottomTabNavigator();
 
 const HomeStack = () => {
+  const dispatch = useDispatch();
+
   return (
     <Tab.Navigator>
       <Tab.Screen
@@ -19,6 +23,14 @@ const HomeStack = () => {
         options={{
           tabBarIcon: ({color, size}) => (
             <Icon name="home" color={color} size={size} />
+          ),
+          headerRight: () => (
+            <Icon
+              name="sign-out-alt"
+              size={25}
+              color="#000"
+              onPress={() => dispatch(logout())}
+            />
           ),
         }}
       />
