@@ -12,6 +12,11 @@ export const userSlice = createSlice({
       state.isAuthenticated = true;
       console.log('Login', state);
     },
+    register: state => {
+      state.user = state.user;
+      state.isAuthenticated = true;
+      console.log('Register', state);
+    },
     logout: state => {
       state.user = null;
       state.isAuthenticated = false;
@@ -20,6 +25,6 @@ export const userSlice = createSlice({
   },
 });
 
-export const {login, logout} = userSlice.actions;
+export const {login, logout, register} = userSlice.actions;
 export const selectUser = state => state.user.user;
 export default userSlice.reducer;
