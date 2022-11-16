@@ -1,12 +1,16 @@
 import {NavigationContainer} from '@react-navigation/native';
 import React, {useState} from 'react';
+import {useSelector} from 'react-redux';
 import AuthStack from './AuthStack';
 import HomeStack from './HomeStack';
 const Router = () => {
-  const [user, setUser] = useState(false);
+  const isAuth = useSelector(state => state.user.isAuthenticated);
+
+  console.log(isAuth);
+
   return (
     <NavigationContainer>
-      {user ? <HomeStack /> : <AuthStack />}
+      {isAuth ? <HomeStack /> : <AuthStack />}
     </NavigationContainer>
   );
 };
