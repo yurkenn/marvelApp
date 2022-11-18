@@ -3,9 +3,9 @@ import auth from '@react-native-firebase/auth';
 export const userInfoSlice = createSlice({
   name: 'userInfo',
   initialState: {
-    displayName: auth().currentUser.displayName,
-    email: auth().currentUser.email,
-    photoURL: auth().currentUser.photoURL,
+    displayName: '' || null,
+    email: '' || null,
+    photoURL: '' || null,
   },
   reducers: {
     updateUserInfo: (state, action) => {

@@ -1,5 +1,3 @@
-// create register screen with formik and yup validation schema and redux
-
 import React from 'react';
 import {
   View,
@@ -10,12 +8,12 @@ import {
   ImageBackground,
   TouchableOpacity,
 } from 'react-native';
-import {Formik} from 'formik';
 import * as Yup from 'yup';
 import {useDispatch} from 'react-redux';
 import {register} from '../../redux/authSlice';
 import auth from '@react-native-firebase/auth';
 import {useNavigation} from '@react-navigation/native';
+import {Formik} from 'formik';
 
 const Register = () => {
   const dispatch = useDispatch();

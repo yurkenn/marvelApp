@@ -1,5 +1,3 @@
-// create login screen with formik
-
 import React from 'react';
 import {
   View,
@@ -10,12 +8,12 @@ import {
   ImageBackground,
   TouchableOpacity,
 } from 'react-native';
-import {Formik} from 'formik';
 import * as Yup from 'yup';
 import {useDispatch} from 'react-redux';
 import {login} from '../../redux/authSlice';
 import auth from '@react-native-firebase/auth';
 import {useNavigation} from '@react-navigation/native';
+import {Formik} from 'formik';
 
 const Login = () => {
   const navigation = useNavigation();
