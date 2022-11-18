@@ -8,12 +8,22 @@ import Stories from './../screens/Stories';
 import Comics from './../screens/Comics';
 import Creator from './../screens/Creator';
 import {useDispatch} from 'react-redux';
-import {logout} from '../redux/userSlice';
-
+import {logout} from '../redux/authSlice';
+import auth from '@react-native-firebase/auth';
+import Profile from '../screens/Profile';
 const Tab = createBottomTabNavigator();
 
 const HomeStack = () => {
   const dispatch = useDispatch();
+
+  const handleLogout = async () => {
+    await auth()
+      .signOut()
+      .then(() => {
+        console.log('User signed out!');
+        dispatch(logout());
+      });
+  };
 
   return (
     <Tab.Navigator>
@@ -29,7 +39,7 @@ const HomeStack = () => {
               name="sign-out-alt"
               size={25}
               color="#000"
-              onPress={() => dispatch(logout())}
+              onPress={handleLogout}
             />
           ),
         }}
@@ -55,6 +65,15 @@ const HomeStack = () => {
       <Tab.Screen
         name="Creator"
         component={Creator}
+        options={{
+          tabBarIcon: ({color, size}) => (
+            <Icon name="user" color={color} size={size} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Profile"
+        component={Profile}
         options={{
           tabBarIcon: ({color, size}) => (
             <Icon name="user" color={color} size={size} />
