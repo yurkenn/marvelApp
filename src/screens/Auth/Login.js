@@ -6,7 +6,6 @@ import {
   Text,
   StyleSheet,
   Image,
-  Button,
   TextInput,
   ImageBackground,
   TouchableOpacity,
@@ -14,9 +13,12 @@ import {
 import {Formik} from 'formik';
 import * as Yup from 'yup';
 import {useDispatch} from 'react-redux';
-import {login} from '../../redux/userSlice';
+import {login} from '../../redux/authSlice';
+import auth from '@react-native-firebase/auth';
+import {useNavigation} from '@react-navigation/native';
 
-const Login = ({navigation}) => {
+const Login = () => {
+  const navigation = useNavigation();
   const dispatch = useDispatch();
 
   const validationSchema = Yup.object().shape({
@@ -24,8 +26,20 @@ const Login = ({navigation}) => {
     password: Yup.string().required('Required'),
   });
 
-  const onSubmit = values => {
-    dispatch(login(values));
+  const onSubmit = async values => {
+    try {
+      const loginAuth = await auth()
+        .signInWithEmailAndPassword(values.email, values.password)
+        .then(() => {
+          console.log('User signed in!');
+        });
+      dispatch(login(values));
+      return loginAuth;
+    } catch (error) {
+      if (error.code === 'auth/email-already-in-use') {
+        console.log('That email address is already in use!');
+      }
+    }
   };
 
   return (
@@ -70,6 +84,7 @@ const Login = ({navigation}) => {
                 onBlur={handleBlur('password')}
                 value={values.password}
                 placeholder="Password"
+                secureTextEntry={true}
               />
               {errors.password && touched.password && (
                 <Text style={styles.error}>{errors.password}</Text>
