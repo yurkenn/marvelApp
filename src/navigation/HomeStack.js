@@ -9,20 +9,18 @@ import Comics from './../screens/Comics';
 import Creator from './../screens/Creator';
 import {useDispatch} from 'react-redux';
 import {logout} from '../redux/authSlice';
-import auth from '@react-native-firebase/auth';
 import Profile from '../screens/Profile';
+import {logout as logoutFirebase} from '../hooks/firebase';
+
 const Tab = createBottomTabNavigator();
 
 const HomeStack = () => {
   const dispatch = useDispatch();
 
   const handleLogout = async () => {
-    await auth()
-      .signOut()
-      .then(() => {
-        console.log('User signed out!');
-        dispatch(logout());
-      });
+    const logoutAuth = await logoutFirebase();
+    console.log('logoutAuth: ', logoutAuth);
+    dispatch(logout());
   };
 
   return (

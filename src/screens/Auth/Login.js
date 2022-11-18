@@ -11,10 +11,9 @@ import {
 import * as Yup from 'yup';
 import {useDispatch} from 'react-redux';
 import {login} from '../../redux/authSlice';
-import auth from '@react-native-firebase/auth';
 import {useNavigation} from '@react-navigation/native';
 import {Formik} from 'formik';
-
+import {login as loginFirebase} from '../../hooks/firebase';
 const Login = () => {
   const navigation = useNavigation();
   const dispatch = useDispatch();
@@ -25,19 +24,9 @@ const Login = () => {
   });
 
   const onSubmit = async values => {
-    try {
-      const loginAuth = await auth()
-        .signInWithEmailAndPassword(values.email, values.password)
-        .then(() => {
-          console.log('User signed in!');
-        });
-      dispatch(login(values));
-      return loginAuth;
-    } catch (error) {
-      if (error.code === 'auth/email-already-in-use') {
-        console.log('That email address is already in use!');
-      }
-    }
+    const loginAuth = await loginFirebase(values);
+    console.log('loginAuth: ', loginAuth);
+    dispatch(login(loginAuth));
   };
 
   return (

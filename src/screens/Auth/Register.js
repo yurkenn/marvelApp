@@ -14,7 +14,7 @@ import {register} from '../../redux/authSlice';
 import auth from '@react-native-firebase/auth';
 import {useNavigation} from '@react-navigation/native';
 import {Formik} from 'formik';
-
+import {register as registerFirebase} from '../../hooks/firebase';
 const Register = () => {
   const dispatch = useDispatch();
   const navigation = useNavigation();
@@ -27,29 +27,9 @@ const Register = () => {
   });
 
   const onSubmit = async values => {
-    try {
-      const registerAuth = await auth()
-        .createUserWithEmailAndPassword(values.email, values.password)
-        .then(() => {
-          console.log('User account created & signed in!');
-        });
-      dispatch(register(values));
-      return registerAuth;
-    } catch (error) {
-      if (error.code === 'auth/email-already-in-use') {
-        navigation.navigate('Login');
-        console.log('That email address is already in use!');
-      }
-      if (error.code === 'auth/weak-password') {
-        console.log('Password should be at least 6 characters');
-      }
-
-      if (error.code === 'auth/invalid-email') {
-        console.log('That email address is invalid!');
-      }
-
-      console.error(error);
-    }
+    const registerAuth = await registerFirebase(values);
+    console.log('registerAuth: ', registerAuth);
+    dispatch(register(registerAuth));
   };
 
   return (
