@@ -1,19 +1,23 @@
-import {StyleSheet, Text, View, Image} from 'react-native';
+import {StyleSheet, Text, View, Image, Pressable} from 'react-native';
 import React from 'react';
 
-const CharComicsCard = ({item}) => {
+const CharComicsCard = ({item, onSelect}) => {
   return (
     <View style={styles.container}>
       <View style={styles.inner_container}>
-        <Image
-          style={styles.image}
-          source={{
-            uri:
-              item.thumbnail === null
-                ? 'https://imagensemoldes.com.br/wp-content/uploads/2020/05/Ilustra%C3%A7%C3%A3o-Avengers-PNG.png'
-                : item.thumbnail.path + '.' + item.thumbnail.extension,
-          }}
-        />
+        <Pressable
+          onPress={onSelect}
+          style={({pressed}) => pressed && styles.pressed}>
+          <Image
+            style={styles.image}
+            source={{
+              uri:
+                item.thumbnail === null
+                  ? 'https://imagensemoldes.com.br/wp-content/uploads/2020/05/Ilustra%C3%A7%C3%A3o-Avengers-PNG.png'
+                  : item.thumbnail.path + '.' + item.thumbnail.extension,
+            }}
+          />
+        </Pressable>
       </View>
     </View>
   );
@@ -48,5 +52,8 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: 'black',
     margin: 10,
+  },
+  pressed: {
+    opacity: 0.7,
   },
 });

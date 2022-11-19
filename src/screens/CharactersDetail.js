@@ -11,7 +11,7 @@ import CharStoriesCard from '../components/Cards/CharacterCards/CharStoriesCard'
 import {GlobalStyle} from '../constant/style';
 import Loading from '../components/Lottie/Loading';
 import Error from '../components/Lottie/Error';
-const CharactersDetail = ({route}) => {
+const CharactersDetail = ({route, navigation}) => {
   const {id} = route.params;
 
   const [data, error, loading] = useApi(`${Config.API_URL}/characters/${id}`);

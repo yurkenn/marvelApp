@@ -15,6 +15,7 @@ import {useDispatch} from 'react-redux';
 import {logout} from '../redux/authSlice';
 import {logout as logoutFirebase} from '../hooks/firebase';
 import {createStackNavigator} from '@react-navigation/stack';
+import ComicDetail from '../screens/ComicDetail';
 
 const Stack = createStackNavigator();
 const HomeStack = () => {
@@ -43,7 +44,12 @@ const HomeStack = () => {
         component={CharactersDetail}
         options={{headerShown: false}}
       />
-      <Stack.Screen name="Comics" component={Comics} />
+      <Stack.Screen
+        name="Comics"
+        component={Comics}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen name="ComicDetail" component={ComicDetail} />
       <Stack.Screen name="Creator" component={Creator} />
       <Stack.Screen name="Events" component={Events} />
       <Stack.Screen name="Series" component={Series} />

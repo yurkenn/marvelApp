@@ -36,13 +36,6 @@ const Characters = ({navigation}) => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Marvel Characters</Text>
-      <TextInput
-        placeholder="Search"
-        placeholderTextColor={'grey'}
-        style={styles.text_input}
-        onChangeText={text => setSearch(text)}
-        value={search}
-      />
       <FlatList
         data={data}
         renderItem={renderItem}
@@ -67,15 +60,5 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: GlobalStyle.colors.tertiary,
     marginTop: 20,
-  },
-  text_input: {
-    height: 40,
-    width: 300,
-    margin: 12,
-    borderWidth: 1,
-    padding: 10,
-    borderRadius: 10,
-    borderColor: 'grey',
-    backgroundColor: GlobalStyle.colors.tertiary,
   },
 });
