@@ -1,19 +1,22 @@
 import * as React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
-import Icon from 'react-native-vector-icons/FontAwesome5';
-
 import Home from './../screens/Home';
-import Stories from './../screens/Stories';
+import Characters from './../screens/Characters';
+import CharactersDetail from './../screens/CharactersDetail';
 import Comics from './../screens/Comics';
 import Creator from './../screens/Creator';
+import Events from './../screens/Events';
+import Series from './../screens/Series';
+import Stories from './../screens/Stories';
+
+import Icon from 'react-native-vector-icons/FontAwesome5';
 import {useDispatch} from 'react-redux';
 import {logout} from '../redux/authSlice';
-import Profile from '../screens/Profile';
 import {logout as logoutFirebase} from '../hooks/firebase';
+import {createStackNavigator} from '@react-navigation/stack';
 
-const Tab = createBottomTabNavigator();
-
+const Stack = createStackNavigator();
 const HomeStack = () => {
   const dispatch = useDispatch();
 
@@ -24,61 +27,20 @@ const HomeStack = () => {
   };
 
   return (
-    <Tab.Navigator>
-      <Tab.Screen
+    <Stack.Navigator>
+      <Stack.Screen
         name="Home"
         component={Home}
-        options={{
-          tabBarIcon: ({color, size}) => (
-            <Icon name="home" color={color} size={size} />
-          ),
-          headerRight: () => (
-            <Icon
-              name="sign-out-alt"
-              size={25}
-              color="#000"
-              onPress={handleLogout}
-            />
-          ),
-        }}
+        options={{headerShown: false}}
       />
-      <Tab.Screen
-        name="Stories"
-        component={Stories}
-        options={{
-          tabBarIcon: ({color, size}) => (
-            <Icon name="book" color={color} size={size} />
-          ),
-        }}
-      />
-      <Tab.Screen
-        name="Comics"
-        component={Comics}
-        options={{
-          tabBarIcon: ({color, size}) => (
-            <Icon name="book" color={color} size={size} />
-          ),
-        }}
-      />
-      <Tab.Screen
-        name="Creator"
-        component={Creator}
-        options={{
-          tabBarIcon: ({color, size}) => (
-            <Icon name="user" color={color} size={size} />
-          ),
-        }}
-      />
-      <Tab.Screen
-        name="Profile"
-        component={Profile}
-        options={{
-          tabBarIcon: ({color, size}) => (
-            <Icon name="user" color={color} size={size} />
-          ),
-        }}
-      />
-    </Tab.Navigator>
+      <Stack.Screen name="Characters" component={Characters} />
+      <Stack.Screen name="CharactersDetail" component={CharactersDetail} />
+      <Stack.Screen name="Comics" component={Comics} />
+      <Stack.Screen name="Creator" component={Creator} />
+      <Stack.Screen name="Events" component={Events} />
+      <Stack.Screen name="Series" component={Series} />
+      <Stack.Screen name="Stories" component={Stories} />
+    </Stack.Navigator>
   );
 };
 
