@@ -78,6 +78,7 @@ const Home = ({navigation}) => {
           </View>
         </TouchableOpacity>
       </View>
+      <Text style={styles.bottom_text}>@yurkenn</Text>
     </View>
   );
 };
@@ -120,5 +121,12 @@ const styles = StyleSheet.create({
     color: GlobalStyle.colors.primary,
     fontSize: 16,
     fontWeight: 'bold',
+  },
+  bottom_text: {
+    color: GlobalStyle.colors.secondary,
+    fontSize: 16,
+    fontWeight: 'bold',
+    position: 'absolute',
+    bottom: 25,
   },
 });
