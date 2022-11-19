@@ -33,8 +33,16 @@ const HomeStack = () => {
         component={Home}
         options={{headerShown: false}}
       />
-      <Stack.Screen name="Characters" component={Characters} />
-      <Stack.Screen name="CharactersDetail" component={CharactersDetail} />
+      <Stack.Screen
+        name="Characters"
+        component={Characters}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="CharactersDetail"
+        component={CharactersDetail}
+        options={{headerShown: false}}
+      />
       <Stack.Screen name="Comics" component={Comics} />
       <Stack.Screen name="Creator" component={Creator} />
       <Stack.Screen name="Events" component={Events} />
