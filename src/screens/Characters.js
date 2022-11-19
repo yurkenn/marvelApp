@@ -3,8 +3,10 @@ import React, {useState} from 'react';
 import useApi from '../hooks/useApi';
 import Config from 'react-native-config';
 import {FlatList} from 'react-native-gesture-handler';
-import CharactersCard from '../components/Cards/CharactersCard';
-
+import CharactersCard from '../components/Cards/CharacterCards/CharactersCard';
+import {GlobalStyle} from '../constant/style';
+import Loading from './../components/Lottie/Loading';
+import Error from './../components/Lottie/Error';
 const Characters = ({navigation}) => {
   const [search, setSearch] = useState('');
 
@@ -23,6 +25,13 @@ const Characters = ({navigation}) => {
   );
   console.log(search);
   console.log('data', data);
+
+  if (loading) {
+    return <Loading />;
+  }
+  if (error) {
+    return <Error />;
+  }
 
   return (
     <View style={styles.container}>
@@ -49,14 +58,14 @@ export default Characters;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: GlobalStyle.colors.primary,
     alignItems: 'center',
     justifyContent: 'center',
   },
   title: {
     fontSize: 30,
     fontWeight: 'bold',
-    color: 'black',
+    color: GlobalStyle.colors.tertiary,
     marginTop: 20,
   },
   text_input: {
@@ -67,5 +76,6 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 10,
     borderColor: 'grey',
+    backgroundColor: GlobalStyle.colors.tertiary,
   },
 });
