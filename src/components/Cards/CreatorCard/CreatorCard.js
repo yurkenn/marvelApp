@@ -1,24 +1,22 @@
-import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
+import {Image, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
+import {TouchableOpacity} from 'react-native-gesture-handler';
 import {GlobalStyle} from '../../../constant/style';
 
-const CharactersCard = ({item, onSelect}) => {
+const CreatorCard = ({item}) => {
   return (
     <View style={styles.container}>
-      <TouchableOpacity onPress={onSelect}>
-        <View style={styles.inner_container}>
-          <Image
-            style={styles.image}
-            source={{uri: item.thumbnail.path + '.' + item.thumbnail.extension}}
-          />
-          <Text style={styles.text}>{item.name}</Text>
-        </View>
-      </TouchableOpacity>
+      <View style={styles.inner_container}>
+        <Image
+          style={styles.image}
+          source={{uri: item.thumbnail.path + '.' + item.thumbnail.extension}}
+        />
+        <Text style={styles.text}>{item.fullName}</Text>
+      </View>
     </View>
   );
 };
-
-export default CharactersCard;
+export default CreatorCard;
 
 const styles = StyleSheet.create({
   container: {

@@ -1,7 +1,13 @@
 import {StyleSheet, Text, View, Image, Pressable} from 'react-native';
 import React from 'react';
+import {useNavigation} from '@react-navigation/native';
+const CharComicsCard = ({item}) => {
+  const navigation = useNavigation();
 
-const CharComicsCard = ({item, onSelect}) => {
+  const onSelect = () => {
+    navigation.navigate('ComicDetail', {id: item.id});
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.inner_container}>

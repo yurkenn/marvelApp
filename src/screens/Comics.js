@@ -19,12 +19,11 @@ const Comics = ({navigation}) => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>COMICS</Text>
       <FlatList
         data={data}
         renderItem={renderItem}
         keyExtractor={item => item.id}
-        numColumns={3}
+        numColumns={2}
       />
     </View>
   );
@@ -34,15 +33,6 @@ export default Comics;
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     backgroundColor: GlobalStyle.colors.primary,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  title: {
-    fontSize: 30,
-    fontWeight: 'bold',
-    color: GlobalStyle.colors.tertiary,
-    marginBottom: 20,
   },
 });

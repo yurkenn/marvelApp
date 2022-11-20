@@ -29,18 +29,14 @@ const Characters = ({navigation}) => {
   if (loading) {
     return <Loading />;
   }
-  if (error) {
-    return <Error />;
-  }
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Marvel Characters</Text>
       <FlatList
         data={data}
         renderItem={renderItem}
         keyExtractor={item => item.id}
-        numColumns={3}
+        numColumns={2}
       />
     </View>
   );
@@ -50,15 +46,6 @@ export default Characters;
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     backgroundColor: GlobalStyle.colors.primary,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  title: {
-    fontSize: 30,
-    fontWeight: 'bold',
-    color: GlobalStyle.colors.tertiary,
-    marginTop: 20,
   },
 });

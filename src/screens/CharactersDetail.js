@@ -26,7 +26,6 @@ const CharactersDetail = ({route, navigation}) => {
   const renderComics = ({item}) => <CharComicsCard item={item} />;
   const renderSeries = ({item}) => <CharSeriesCard item={item} />;
   const renderStories = ({item}) => <CharStoriesCard item={item} />;
-  const renderEvents = ({item}) => <CharEventsCard item={item} />;
 
   if (loading) {
     return <Loading />;
@@ -42,8 +41,6 @@ const CharactersDetail = ({route, navigation}) => {
         <FlatList data={dataSeries} horizontal renderItem={renderSeries} />
         <Text style={styles.title}>STORIES</Text>
         <FlatList data={dataStories} horizontal renderItem={renderStories} />
-        <Text style={styles.title}>EVENTS</Text>
-        <FlatList data={dataEvents} horizontal renderItem={renderEvents} />
       </View>
     </ScrollView>
   );

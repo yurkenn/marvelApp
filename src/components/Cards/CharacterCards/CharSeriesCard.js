@@ -1,19 +1,30 @@
-import {StyleSheet, Text, View, Image} from 'react-native';
+import {StyleSheet, Text, View, Image, Pressable} from 'react-native';
 import React from 'react';
+import {useNavigation} from '@react-navigation/native';
 
 const CharSeriesCard = ({item}) => {
+  const navigation = useNavigation();
+
+  const onSelect = () => {
+    navigation.navigate('SeriesDetail', {id: item.id});
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.inner_container}>
-        <Image
-          style={styles.image}
-          source={{
-            uri:
-              item.thumbnail === null
-                ? 'https://imagensemoldes.com.br/wp-content/uploads/2020/05/Ilustra%C3%A7%C3%A3o-Avengers-PNG.png'
-                : item.thumbnail.path + '.' + item.thumbnail.extension,
-          }}
-        />
+        <Pressable
+          style={({pressed}) => pressed && styles.pressed}
+          onPress={onSelect}>
+          <Image
+            style={styles.image}
+            source={{
+              uri:
+                item.thumbnail === null
+                  ? 'https://imagensemoldes.com.br/wp-content/uploads/2020/05/Ilustra%C3%A7%C3%A3o-Avengers-PNG.png'
+                  : item.thumbnail.path + '.' + item.thumbnail.extension,
+            }}
+          />
+        </Pressable>
       </View>
     </View>
   );
@@ -43,5 +54,8 @@ const styles = StyleSheet.create({
     height: 100,
     borderRadius: 10,
     resizeMode: 'cover',
+  },
+  pressed: {
+    opacity: 0.7,
   },
 });

@@ -1,5 +1,4 @@
 import * as React from 'react';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
 import Home from './../screens/Home';
 import Characters from './../screens/Characters';
@@ -16,9 +15,12 @@ import {logout} from '../redux/authSlice';
 import {logout as logoutFirebase} from '../hooks/firebase';
 import {createStackNavigator} from '@react-navigation/stack';
 import ComicDetail from '../screens/ComicDetail';
+import {GlobalStyle} from '../constant/style';
+import SeriesDetail from '../screens/SeriesDetail';
+import Favorites from '../screens/Favorites';
 
 const Stack = createStackNavigator();
-const HomeStack = () => {
+const HomeStack = ({navigation}) => {
   const dispatch = useDispatch();
 
   const handleLogout = async () => {
@@ -28,7 +30,17 @@ const HomeStack = () => {
   };
 
   return (
-    <Stack.Navigator>
+    <Stack.Navigator
+      screenOptions={{
+        headerStyle: {
+          backgroundColor: GlobalStyle.colors.primary,
+        },
+        headerTintColor: GlobalStyle.colors.secondary,
+        headerTitleStyle: {
+          fontWeight: 'bold',
+        },
+        headerTitleAlign: 'center',
+      }}>
       <Stack.Screen
         name="Home"
         component={Home}
@@ -37,23 +49,85 @@ const HomeStack = () => {
       <Stack.Screen
         name="Characters"
         component={Characters}
-        options={{headerShown: false}}
+        options={{
+          title: 'Marvel Characters',
+          headerRight: () => (
+            <Icon
+              name="star"
+              size={20}
+              color={GlobalStyle.colors.secondary}
+              style={{marginRight: 10}}
+              onPress={() => navigation.navigate('Favorites')}
+            />
+          ),
+        }}
       />
       <Stack.Screen
         name="CharactersDetail"
         component={CharactersDetail}
-        options={{headerShown: false}}
+        options={{
+          title: 'Character Detail',
+        }}
       />
       <Stack.Screen
         name="Comics"
         component={Comics}
-        options={{headerShown: false}}
+        options={{
+          title: 'Marvel Comics',
+        }}
       />
-      <Stack.Screen name="ComicDetail" component={ComicDetail} />
-      <Stack.Screen name="Creator" component={Creator} />
-      <Stack.Screen name="Events" component={Events} />
-      <Stack.Screen name="Series" component={Series} />
-      <Stack.Screen name="Stories" component={Stories} />
+      <Stack.Screen
+        name="ComicDetail"
+        component={ComicDetail}
+        options={{
+          title: 'Comic Detail',
+        }}
+      />
+      <Stack.Screen
+        name="Creator"
+        component={Creator}
+        options={{
+          title: 'Marvel Creator',
+        }}
+      />
+
+      <Stack.Screen
+        name="Events"
+        component={Events}
+        options={{
+          title: 'Marvel Events',
+        }}
+      />
+
+      <Stack.Screen
+        name="Series"
+        component={Series}
+        options={{
+          title: 'Marvel Series',
+        }}
+      />
+      <Stack.Screen
+        name="SeriesDetail"
+        component={SeriesDetail}
+        options={{
+          title: 'Series Detail',
+        }}
+      />
+
+      <Stack.Screen
+        name="Stories"
+        component={Stories}
+        options={{
+          title: 'Marvel Stories',
+        }}
+      />
+      <Stack.Screen
+        name="Favorites"
+        component={Favorites}
+        options={{
+          title: 'Favorites',
+        }}
+      />
     </Stack.Navigator>
   );
 };

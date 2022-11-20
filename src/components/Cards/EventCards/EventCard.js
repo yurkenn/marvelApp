@@ -1,8 +1,8 @@
-import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
+import {StyleSheet, Text, View, TouchableOpacity, Image} from 'react-native';
 import React from 'react';
 import {GlobalStyle} from '../../../constant/style';
 
-const CharactersCard = ({item, onSelect}) => {
+const EventCard = ({item, onSelect}) => {
   return (
     <View style={styles.container}>
       <TouchableOpacity onPress={onSelect}>
@@ -11,15 +11,14 @@ const CharactersCard = ({item, onSelect}) => {
             style={styles.image}
             source={{uri: item.thumbnail.path + '.' + item.thumbnail.extension}}
           />
-          <Text style={styles.text}>{item.name}</Text>
+          <Text style={styles.text}>{item.title.slice(0, 15)}</Text>
         </View>
       </TouchableOpacity>
     </View>
   );
 };
 
-export default CharactersCard;
-
+export default EventCard;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
