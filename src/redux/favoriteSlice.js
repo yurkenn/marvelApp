@@ -9,8 +9,11 @@ export const favoriteSlice = createSlice({
     addFavorite: (state, action) => {
       state.value.push(action.payload);
     },
+    removeFavorite: (state, action) => {
+      state.value = state.value.filter(item => item.id !== action.payload.id);
+    },
   },
 });
 
-export const {addFavorite} = favoriteSlice.actions;
+export const {addFavorite, removeFavorite} = favoriteSlice.actions;
 export default favoriteSlice.reducer;

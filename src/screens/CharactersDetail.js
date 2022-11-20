@@ -59,6 +59,6 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontStyle: 'italic',
     margin: 10,
-    color: GlobalStyle.colors.tertiary,
+    color: GlobalStyle.colors.secondary,
   },
 });

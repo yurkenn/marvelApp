@@ -1,4 +1,4 @@
-import {StyleSheet, Text, TextInput, View} from 'react-native';
+import {Image, StyleSheet, Text, TextInput, View} from 'react-native';
 import React, {useState} from 'react';
 import useApi from '../hooks/useApi';
 import Config from 'react-native-config';
