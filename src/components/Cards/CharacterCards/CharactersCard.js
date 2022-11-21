@@ -10,6 +10,7 @@ import Animated, {
   withSpring,
   withDelay,
 } from 'react-native-reanimated';
+import {showMessage, hideMessage} from 'react-native-flash-message';
 
 const AnimatedImage = Animated.createAnimatedComponent(Image);
 
@@ -28,8 +29,21 @@ const CharactersCard = ({item, onSelect}) => {
         scale.value = withDelay(400, withSpring(0));
       }
     });
+    showMessage({
+      message: 'Added to favorite',
+      type: 'success',
+      icon: 'success',
+      duration: 1000,
+    });
     return dispatch(addFavorite(item));
   }, [scale, dispatch, item]);
+
+  let name = item.name ? item.name : item.title ? item.title : item.fullName;
+
+  let thumbnail =
+    item.thumbnail === null
+      ? 'https://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available.jpg'
+      : item.thumbnail.path + '.' + item.thumbnail.extension;
 
   return (
     <TapGestureHandler waitFor={doubleTapRef} onActivated={onSelect}>
@@ -43,14 +57,14 @@ const CharactersCard = ({item, onSelect}) => {
               <Image
                 style={styles.image}
                 source={{
-                  uri: item.thumbnail.path + '.' + item.thumbnail.extension,
+                  uri: thumbnail,
                 }}
               />
               <AnimatedImage
                 style={[styles.hearth, rStlye]}
                 source={require('./../../../assets/like.png')}
               />
-              <Text style={styles.text}>{item.name}</Text>
+              <Text style={styles.text}>{name.slice(0, 10)}</Text>
             </View>
           </View>
         </Animated.View>

@@ -1,11 +1,22 @@
-import {StyleSheet, Text, View, Image, Pressable} from 'react-native';
+import {StyleSheet, View, Image, Pressable} from 'react-native';
 import React from 'react';
 import {useNavigation} from '@react-navigation/native';
-const CharComicsCard = ({item}) => {
+const CharComicsCard = ({item, section}) => {
   const navigation = useNavigation();
 
   const onSelect = () => {
-    navigation.navigate('ComicDetail', {id: item.id});
+    if (section === 'Comics') {
+      navigation.navigate('ComicDetail', {id: item.id});
+    }
+    if (section === 'Series') {
+      navigation.navigate('SeriesDetail', {id: item.id});
+    }
+    if (section === 'Stories') {
+      navigation.navigate('StoriesDetail', {id: item.id});
+    }
+    if (section === 'Events') {
+      navigation.navigate('EventsDetail', {id: item.id});
+    }
   };
 
   return (

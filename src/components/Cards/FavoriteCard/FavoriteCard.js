@@ -1,11 +1,4 @@
-import {
-  StyleSheet,
-  Text,
-  View,
-  TouchableOpacity,
-  Image,
-  Pressable,
-} from 'react-native';
+import {StyleSheet, Text, View, Image, Pressable} from 'react-native';
 import React from 'react';
 import {GlobalStyle} from '../../../constant/style';
 import {useDispatch} from 'react-redux';
@@ -18,17 +11,21 @@ const FavoriteCard = ({item}) => {
     dispatch(removeFavorite(item));
   };
 
+  let name = item.name ? item.name : item.title ? item.title : item.fullName;
+
+  let thumbnail =
+    item.thumbnail === null
+      ? 'https://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available.jpg'
+      : item.thumbnail.path + '.' + item.thumbnail.extension;
+
   return (
     <Pressable
       style={({pressed}) => pressed && styles.pressed}
       onLongPress={handleRemoveItem}>
       <View style={styles.container}>
         <View style={styles.inner_container}>
-          <Image
-            style={styles.image}
-            source={{uri: item.thumbnail.path + '.' + item.thumbnail.extension}}
-          />
-          <Text style={styles.text}>{item.name.slice(0, 15)}</Text>
+          <Image style={styles.image} source={{uri: thumbnail}} />
+          <Text style={styles.text}>{name.slice(0, 15)}</Text>
         </View>
       </View>
     </Pressable>

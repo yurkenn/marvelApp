@@ -14,10 +14,7 @@ const CharacterDetailCard = ({item}) => {
         <Image
           style={styles.image}
           source={{
-            uri:
-              item.thumbnail === null
-                ? 'https://imagensemoldes.com.br/wp-content/uploads/2020/05/Ilustra%C3%A7%C3%A3o-Avengers-PNG.png'
-                : item.thumbnail.path + '.' + item.thumbnail.extension,
+            uri: `${item.thumbnail.path}.${item.thumbnail.extension}`,
           }}
         />
         <ScrollView>
@@ -35,6 +32,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: GlobalStyle.colors.primary,
     alignItems: 'center',
+    justifyContent: 'center',
     margin: 10,
     borderRadius: 10,
     height: 270,
@@ -44,7 +42,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: GlobalStyle.colors.primary,
     alignItems: 'center',
-    margin: 0,
   },
   image: {
     width: 150,
