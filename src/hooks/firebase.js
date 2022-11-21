@@ -1,26 +1,24 @@
 import auth from '@react-native-firebase/auth';
-
+import {showMessage, hideMessage} from 'react-native-flash-message';
 const login = async values => {
   const {email, password} = values;
   try {
     const loginAuth = await auth().signInWithEmailAndPassword(email, password);
+    showMessage({
+      message: `Welcome ${loginAuth.user.email}`,
+      type: 'success',
+      icon: 'success',
+      duration: 1000,
+    });
     return loginAuth;
-  } catch (error) {
-    if (error.code === 'auth/invalid-email') {
-      console.log('That email address is invalid!');
-    }
-
-    if (error.code === 'auth/user-disabled') {
-      console.log('User account disabled!');
-    }
-
-    if (error.code === 'auth/user-not-found') {
-      console.log('User not found!');
-    }
-
-    if (error.code === 'auth/wrong-password') {
-      console.log('Wrong password!');
-    }
+  } catch (e) {
+    showMessage({
+      message: String(e),
+      type: 'danger',
+      icon: 'danger',
+      position: 'top',
+      duration: 3000,
+    });
   }
 };
 
@@ -31,20 +29,21 @@ const register = async values => {
       email,
       password,
     );
+    showMessage({
+      message: `Welcome ${registerAuth.user.email}`,
+      type: 'success',
+      icon: 'success',
+      duration: 1000,
+    });
     return registerAuth;
-  } catch (error) {
-    if (error.code === 'auth/email-already-in-use') {
-      console.log('That email address is already in use!');
-    }
-    if (error.code === 'auth/weak-password') {
-      console.log('Password should be at least 6 characters');
-    }
-
-    if (error.code === 'auth/invalid-email') {
-      console.log('That email address is invalid!');
-    }
-
-    console.error(error);
+  } catch (e) {
+    showMessage({
+      message: String(e),
+      type: 'danger',
+      icon: 'danger',
+      position: 'top',
+      duration: 3000,
+    });
   }
 };
 
@@ -52,8 +51,13 @@ const logout = async () => {
   try {
     await auth().signOut();
     return true;
-  } catch (error) {
-    console.log(error);
+  } catch (e) {
+    showMessage({
+      message: String(e),
+      type: 'danger',
+      icon: 'danger',
+      position: 'top',
+    });
     return false;
   }
 };

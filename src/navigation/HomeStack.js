@@ -1,23 +1,27 @@
 import * as React from 'react';
 
 import Home from './../screens/Home';
-import Characters from './../screens/Characters';
-import CharactersDetail from './../screens/CharactersDetail';
-import Comics from './../screens/Comics';
-import Creator from './../screens/Creator';
-import Events from './../screens/Events';
-import Series from './../screens/Series';
-import Stories from './../screens/Stories';
+import Characters from './../screens/Characters/Characters';
+import CharactersDetail from './../screens/Characters/CharactersDetail';
+import Comics from '../screens/Comics/Comics';
+import Creator from '../screens/Creator/Creator';
+import Events from './../screens/Events/Events';
+import Series from './../screens/Series/Series';
+import Stories from './../screens/Stories/Stories';
 
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import {useDispatch} from 'react-redux';
 import {logout} from '../redux/authSlice';
 import {logout as logoutFirebase} from '../hooks/firebase';
 import {createStackNavigator} from '@react-navigation/stack';
-import ComicDetail from '../screens/ComicDetail';
+import ComicDetail from '../screens/Comics/ComicDetail';
 import {GlobalStyle} from '../constant/style';
-import SeriesDetail from '../screens/SeriesDetail';
+import SeriesDetail from '../screens/Series/SeriesDetail';
 import Favorites from '../screens/Favorites';
+import StoriesDetail from '../screens/Stories/StoriesDetail';
+import EventsDetail from '../screens/Events/EventsDetail';
+import CreatorDetail from '../screens/Creator/CreatorDetail';
+import {StyleSheet} from 'react-native';
 
 const Stack = createStackNavigator();
 const HomeStack = ({navigation}) => {
@@ -35,7 +39,7 @@ const HomeStack = ({navigation}) => {
         headerStyle: {
           backgroundColor: GlobalStyle.colors.primary,
         },
-        headerTintColor: GlobalStyle.colors.secondary,
+        headerTintColor: GlobalStyle.colors.tertiary,
         headerTitleStyle: {
           fontWeight: 'bold',
         },
@@ -56,7 +60,7 @@ const HomeStack = ({navigation}) => {
               name="star"
               size={20}
               color={GlobalStyle.colors.secondary}
-              style={{marginRight: 10}}
+              style={styles.headerRight}
               onPress={() => navigation.navigate('Favorites')}
             />
           ),
@@ -67,6 +71,15 @@ const HomeStack = ({navigation}) => {
         component={CharactersDetail}
         options={{
           title: 'Character Detail',
+          headerRight: () => (
+            <Icon
+              name="sign-out-alt"
+              size={25}
+              color={GlobalStyle.colors.secondary}
+              style={styles.headerRight}
+              onPress={handleLogout}
+            />
+          ),
         }}
       />
       <Stack.Screen
@@ -74,6 +87,15 @@ const HomeStack = ({navigation}) => {
         component={Comics}
         options={{
           title: 'Marvel Comics',
+          headerRight: () => (
+            <Icon
+              name="star"
+              size={20}
+              color={GlobalStyle.colors.secondary}
+              style={styles.headerRight}
+              onPress={() => navigation.navigate('Favorites')}
+            />
+          ),
         }}
       />
       <Stack.Screen
@@ -88,6 +110,23 @@ const HomeStack = ({navigation}) => {
         component={Creator}
         options={{
           title: 'Marvel Creator',
+          headerRight: () => (
+            <Icon
+              name="star"
+              size={20}
+              color={GlobalStyle.colors.secondary}
+              style={styles.headerRight}
+              onPress={() => navigation.navigate('Favorites')}
+            />
+          ),
+        }}
+      />
+
+      <Stack.Screen
+        name="CreatorDetail"
+        component={CreatorDetail}
+        options={{
+          title: 'Creator Detail',
         }}
       />
 
@@ -96,6 +135,23 @@ const HomeStack = ({navigation}) => {
         component={Events}
         options={{
           title: 'Marvel Events',
+          headerRight: () => (
+            <Icon
+              name="star"
+              size={20}
+              color={GlobalStyle.colors.secondary}
+              style={styles.headerRight}
+              onPress={() => navigation.navigate('Favorites')}
+            />
+          ),
+        }}
+      />
+
+      <Stack.Screen
+        name="EventsDetail"
+        component={EventsDetail}
+        options={{
+          title: 'Events Detail',
         }}
       />
 
@@ -104,6 +160,15 @@ const HomeStack = ({navigation}) => {
         component={Series}
         options={{
           title: 'Marvel Series',
+          headerRight: () => (
+            <Icon
+              name="star"
+              size={20}
+              color={GlobalStyle.colors.secondary}
+              style={styles.headerRight}
+              onPress={() => navigation.navigate('Favorites')}
+            />
+          ),
         }}
       />
       <Stack.Screen
@@ -113,12 +178,27 @@ const HomeStack = ({navigation}) => {
           title: 'Series Detail',
         }}
       />
-
       <Stack.Screen
         name="Stories"
         component={Stories}
         options={{
           title: 'Marvel Stories',
+          headerRight: () => (
+            <Icon
+              name="star"
+              size={20}
+              color={GlobalStyle.colors.secondary}
+              style={styles.headerRight}
+              onPress={() => navigation.navigate('Favorites')}
+            />
+          ),
+        }}
+      />
+      <Stack.Screen
+        name="StoriesDetail"
+        component={StoriesDetail}
+        options={{
+          title: 'Stories Detail',
         }}
       />
       <Stack.Screen
@@ -133,3 +213,9 @@ const HomeStack = ({navigation}) => {
 };
 
 export default HomeStack;
+
+const styles = StyleSheet.create({
+  headerRight: {
+    marginRight: 10,
+  },
+});

@@ -11,6 +11,14 @@ const Favorites = () => {
 
   const renderItem = ({item}) => <FavoriteCard item={item} />;
 
+  if (fav.length === 0) {
+    return (
+      <View style={styles.container}>
+        <Text style={styles.text}>No Favorites</Text>
+      </View>
+    );
+  }
+
   return (
     <View style={styles.container}>
       <FlatList
@@ -29,5 +37,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: GlobalStyle.colors.primary,
+  },
+  text: {
+    color: GlobalStyle.colors.tertiary,
+    fontSize: 20,
+    textAlign: 'center',
+    marginTop: 20,
   },
 });

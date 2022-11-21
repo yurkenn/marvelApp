@@ -9,10 +9,6 @@ const useApi = url => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState();
 
-  useEffect(() => {
-    fetchData();
-  }, []);
-
   const fetchData = async () => {
     try {
       const response = await axios.get(url, {
@@ -33,6 +29,10 @@ const useApi = url => {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   return [data, loading, error];
 };
