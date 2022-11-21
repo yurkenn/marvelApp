@@ -23,7 +23,10 @@ https://user-images.githubusercontent.com/69719126/203170477-a932f40e-fae8-4a99-
 - React Navigation
 - Redux
 - Vector Icons
-- Reanimated
+- React Reanimated
+- Yup
+- Formik
+- Flash Messages
 
 ## Features 
 - Listing returned marvel characters with API.
