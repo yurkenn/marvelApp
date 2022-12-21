@@ -43,13 +43,13 @@ https://user-images.githubusercontent.com/69719126/203165632-2ac19bff-82d0-4622-
 
 Clone this repository on your local machine.
 <br>
-`git clone https://github.com/yurkenn/third-week-homework-yurkenn.git`
+`git clone https://github.com/yurkenn/rn-marvel-app.git`
 
 ## Use
 
 To use it after cloning the project:
 <br>
-`cd third-week-homework-yurkenn`
+`cd rn-marvel-app`
 <br>
 `code .`
 <br>
