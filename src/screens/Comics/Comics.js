@@ -24,12 +24,7 @@ const Comics = ({navigation}) => {
 
   return (
     <View style={styles.container}>
-      <FlatList
-        data={data}
-        renderItem={renderItem}
-        keyExtractor={item => item.id}
-        numColumns={2}
-      />
+      <FlatList data={data} renderItem={renderItem} numColumns={2} />
     </View>
   );
 };
