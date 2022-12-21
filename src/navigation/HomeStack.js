@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import Home from './../screens/Home';
+import Home from './../screens/Home/Home';
 import Characters from './../screens/Characters/Characters';
 import CharactersDetail from './../screens/Characters/CharactersDetail';
 import Comics from '../screens/Comics/Comics';
@@ -17,7 +17,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import ComicDetail from '../screens/Comics/ComicDetail';
 import {GlobalStyle} from '../constant/style';
 import SeriesDetail from '../screens/Series/SeriesDetail';
-import Favorites from '../screens/Favorites';
+import Favorites from '../screens/Favorites/Favorites';
 import StoriesDetail from '../screens/Stories/StoriesDetail';
 import EventsDetail from '../screens/Events/EventsDetail';
 import CreatorDetail from '../screens/Creator/CreatorDetail';
